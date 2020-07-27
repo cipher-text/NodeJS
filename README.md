@@ -12,3 +12,13 @@
 > node is single threaded asynchronous(non-blocking)
 > node is ideal for data intensive realtime application but it is not ideal for cpu intensive application
 > node is a c++ program embedded with google's v8 engine
+
+##### Module
+> unlike javascript used in web where everything is global and you can access the content of one file from other in case of node every file is module and content inside that is privte to other's and it can be only accessed outside using export(what we are exporting)
+> node provides modularity using wrapper function it wraps the content of file using wrapper function
+
+##### Some useful modules
+* OS
+* Path
+* File System
+* Events
