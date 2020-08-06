@@ -143,4 +143,31 @@ next();}
 * express.json()
 * express.static()
 * express.urlencoded()
+######## third party middleware
+> go to expressjs->resources->middleware 
+
+##### working with different environment
+> you can customize the code on the basis of the environment in which running like development, production etc.
+```
+process.env.NODE_ENV  (if it is not set then it gives undefined)( in window you can set using set )
+```
+>OR
+```
+app.get('env')  (if not set then it gives development)
+```
+
+> there are different packages to manage the environment configuration like rc, config etc.
+
+##### how to use config package
+```
+npm i config
+```
+
+```
+const config = require("config")
+```
+> create different json files for different environment like ..    default.json, development.json, production.json and there content will be accessed on the basic on environment
+> if you want to hide something from others you can store them into custom environment varialbe like password (set password = 1234)
+> to access this password create a file with exact name  custom-environment-variables.json, and here you can map your environment variable.
+
 
