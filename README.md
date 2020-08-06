@@ -117,4 +117,30 @@ npm publish
 > first change the package version
 > then publish it again
 
+##### Express
+![picture](https://miro.medium.com/max/700/1*XP-mZOrIqX7OsFInN2ngRQ.png)
+> express is a framework that is used to create restful services
+```
+npm i express
+```
+>  if you want to validate your request body data there are some libraries which can be useful for data validation like joi etc.
+```
+npm i joi
+```
+###### middleware
+> middleware or middleware function is basically a function that takes request object and it either returns response to the client or passes control to another middleware 
+> function
+![request processing pipeline image](https://d33wubrfki0l68.cloudfront.net/a22bb45df146d43b57f2f6c90182d19e7394cd96/d6e10/assets-jekyll/blog/express-middleware-examples/middleware-30b3b30ad54e21d8281719042860f3edd9fb1f40f93150233a08165d908f4631.png)
+> every request goes through request processing pipeline
+> if you want to add a middleware in request processing pipeline
+```
+app.use(function)
+
+function a(req, res, next){
+next();}
+```
+######### builtin middleware
+* express.json()
+* express.static()
+* express.urlencoded()
 
