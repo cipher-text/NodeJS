@@ -201,4 +201,30 @@ set DEBUG=app:startup,app:db
 ```
 set DEBUG=
 ```
+#### Tempelating Engine
+* pug
+* mustache
+* EJS
 
+> we are going to use pug
+```
+npm i pug
+```
+```
+app.set("view engine", "pug");
+app.set("views", "./views");  // by default it is already set
+```
+> now just create a views folder and then pug file like index.pug in views folder
+ex.  index.pug
+html
+ head
+  title=title_var
+ body
+  h1=message
+ 
+ > now we have to render it where we want to send it as response
+ ex.
+ ```
+ app.get("/", (req, res)=>{
+  res.render("index", {title_var="dynamic title", message="message dynamic"});
+ })
