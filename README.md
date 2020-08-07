@@ -171,3 +171,32 @@ const config = require("config")
 > to access this password create a file with exact name  custom-environment-variables.json, and here you can map your environment variable.
 
 
+##### debugging with debug package
+> normally we use console.log() for debugging purpose but this way is little tedius as when we don't want to show debug information we have to comment out logged messages
+```
+npm i debug
+```
+> in debug package you can control your debugging messages with DEBUG environment variable
+
+```
+const startupDebug = require("debug")("app:startup")
+const dbDebug = require("debug")("app:db")
+```
+
+```
+startupDebug(" startup debugging message");
+dbDebug(" db debug message ");
+```
+> now if we want to see only startup debugging message just set the DEBUG variable as app:startup
+```
+set DEBUG=app:startup
+```
+> simmilarily if you want to see multiple
+```
+set DEBUG=app:startup,app:db
+```
+> if you want to see nothing set nothing to DEBUG
+```
+set DEBUG=
+```
+
