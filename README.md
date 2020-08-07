@@ -159,6 +159,7 @@ app.get('env')  (if not set then it gives development)
 > there are different packages to manage the environment configuration like rc, config etc.
 
 ##### how to use config package
+
 ```
 npm i config
 ```
@@ -171,7 +172,8 @@ const config = require("config")
 > to access this password create a file with exact name  custom-environment-variables.json, and here you can map your environment variable.
 
 
-##### debugging with debug package
+#### debugging with debug package
+![debugging image](https://stackify.com/wp-content/uploads/2018/04/Troubleshooting-vs.-Debugging-1280x720.png)
 > normally we use console.log() for debugging purpose but this way is little tedius as when we don't want to show debug information we have to comment out logged messages
 ```
 npm i debug
