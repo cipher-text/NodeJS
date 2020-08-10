@@ -228,3 +228,133 @@ html
  app.get("/", (req, res)=>{
   res.render("index", {title_var="dynamic title", message="message dynamic"});
  })
+
+```
+#### Working with Mongodb
+![mongodb image](https://www.openlogic.com/sites/openlogic/files/image/2019-07/image-blog-big-data-on-demand-with-mongodb.jpg)
+> mongodb is use to store no sql data
+> Here we are going to use mongoose package that make easy to use and connect to mongodb
+> here is the procedure to connect with mongodb
+* download and install mongodb community server
+* after install you will get mongodb compass community where you can see your db 
+* now install mongoose in your project using ``` npm i mongoose```
+```
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/test_db",{useNewUrlParser: true,
+    useUnifiedTopology: true,})
+    .then(()=>console.log("connected to db"))
+    .catch((err)=>console.log("error:",err));
+```
+* now if everything goes correct it will be connected to db ( here we are creating tes_db)
+* now to create and store document in collection we are going to create schema ( that is the concept of mongoose)
+* here are all different types of schema that we can use in schema creation
+1. String
+2. Number
+3. Date
+4. Buffer
+5. Boolean
+6. ObjectID
+7. Array
+```
+const productSchema = mongoose.Schema({
+ name:String,
+ price: Number,
+ tags: [String]
+});
+
+
+const Product = mongoose.model("Product", productSchema);
+
+const product = new Product({
+name:"ABC",
+price: 199,
+tags:["test","try","learn"]
+})
+
+```
+* first we created the schema of document that is the concept of mongoose (it is not present is mongodb)
+* now from this schema we created a model that is a class (in our example that is Product)
+* now from this model we created object that is our document
+* to save this just call the save method from model notice that save is asynchronous
+```
+async function saveData(){
+ const result = await Product.save();
+ console.log(result);
+ }
+ saveData();
+```
+
+* Querying the documents from db
+```
+async function getData(){
+const result = await Product.find({here you can pass one or more key value which you are looking for})
+ .limit(number_of_documents)
+ .select({in this object you can pass what values you want to select from document like price:1, name:1 })
+ .sort({in this object you can pass the one or more keys on the basis of which you want to sort the query result like price: 1 for asc and price:-1 for desc})
+```
+* using comparison operators these are also present in mongodb that are borrowed
+* comparison operators
+```
+eq (equal)
+neq (not equal)
+lt (less than)
+lte (less than or equal)
+gt (greater than)
+gte (greater than or equal)
+nt (not)
+nte (not equal)
+
+```
+>use them like this 
+```
+Product.find({price: {$gt:10}};
+Product.find({price: {$gte:10,$lt:20}};
+Product.find({price: {$in:[10,20,30]};
+```
+* logical operators
+```
+and 
+or
+```
+>use them like this
+```
+Product.find()
+ .or([{name:"abc"},{name:"xyz"}]);
+```
+
+> using regualar expression
+```
+/pattern/
+
+^a  => starts with a 
+a$ => ends with a
+* => 0 or more
+. => one
+```
+```
+Product.find({name:/^a/});
+```
+
+> sometime you just want to return only count
+```
+Product.find().count();
+```
+
+* pagination
+
+```
+const pageNumber = 2;
+const pageSize = 10;
+Product.find()
+ .skip((pageNumber-1)*pageSize)
+ .limit(pageSize)
+
+```
+
+
+
+
+
+
+
+ 
