@@ -124,8 +124,25 @@ npm publish
 npm i express
 ```
 >  if you want to validate your request body data there are some libraries which can be useful for data validation like joi etc.
+###### JOI
 ```
 npm i joi
+```
+
+```
+const Joi = require("joi");
+const Schema = Joi.object({
+ name: Joi.string().min(3).required(),
+ message: Joi.sting(),
+ price: Joi.number(),
+});
+
+const product={
+name:"xyz",
+message:"dklsfljakjdf",
+price: 20
+}
+const result = Schema.validate(product);
 ```
 ###### middleware
 > middleware or middleware function is basically a function that takes request object and it either returns response to the client or passes control to another middleware 
