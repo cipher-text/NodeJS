@@ -367,11 +367,88 @@ Product.find()
  .limit(pageSize)
 
 ```
-
-
-
-
-
-
-
+* validation
+> mongodb does not provide data validation if you save empty document it will save it.
+> mongoose provide validation you can use it in schema declaration
+```
+const productSchema = mongoose.Schema({
+ name: {type:String, required:true},
+ date: { type: Date, default: Date.now})
+})
+```
+> mongoose built in validators
+```
+const productSchema = mongoose.Schema({
+ name: {
+  type:String, 
+  required:true,
+  minlength: 5,
+  maxlength: 25,
+  match: /pattern/},
+  
+  
+ isAdded:true,
  
+ date: { 
+  type: Date,
+  default: Date.now,
+  required: function(){return this.isAdded}   // custom required  note that you can't use arrow function here because they refer to global scope
+  min:--,
+  max: --
+ }),
+ price:{
+  type: Number,
+  required: true,
+  min: 10,
+  max: 20,
+}),
+category:{
+type:String,
+required: true,
+enum: ["fashion", "electronics", "grocery"]   // here only these three values will be valid and all other will be wrong
+}
+```
+> custom validator
+
+```
+tags:{
+ type: Array,
+ validate:{
+  validator: function(v){
+   return v&&v.length;    //tag should have atleast one value and can't be null
+  },
+  message:"A course should have atleast one tag"
+ }
+ }
+ ```
+ > Asynchronous course validation
+ 
+ ```
+ tags:{
+ type: Array,
+ validate:{
+  isAsync: true,
+  validator: function(v, callback){
+   setTimeout(()=>{
+    const result =  v&&v.length;    //tag should have atleast one value and can't be null
+    callback(result);
+   },4000);
+  },
+  message:"A course should have atleast one tag"
+ }
+ }
+ ```
+ >some other schema properties
+ > for type:string
+ ```
+ {
+ type: String,
+ trim: true,
+ uppercase:true   /or lowercase: true,
+ }
+ 
+ {
+ type: Number,
+ set: (v)=>Math.round(v),  // when we try to save it will round off value
+ get: (v)=>Math.round(v),  // when we try to get value it will give round off value
+ }
