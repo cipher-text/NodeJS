@@ -452,3 +452,41 @@ tags:{
  set: (v)=>Math.round(v),  // when we try to save it will round off value
  get: (v)=>Math.round(v),  // when we try to get value it will give round off value
  }
+```
+* referencing a doucument 
+
+> courses collection
+```
+const courseSchema = new mongoose.Schema({
+ name: String,
+ author: {
+  type: mongoose.Schema.Types.ObjectID,
+  ref: "Author"
+ }
+})
+```
+> authors collection
+```
+const authorSchema = new mongoose.Schema({
+ name: String,
+ info: String,
+});
+```
+> now when you create the the object of course and save it passs the id of author (objectid)
+> now if you want that when you query the course you get the author from authors collection which you are refering then call the populate method (not that if you pass wrong id    > to refrence if not going to give error becuase it is not relational db
+```
+Course.find().populate("author", { "name"});
+```
+* embedding document
+{
+ name:String,
+ author: authroSchema
+ }
+ 
+> updating subarray
+```
+const course = await findById(courseid);
+const author = course.authors.id(authorid);
+author.name="adkfjs"
+author.save();
+```
