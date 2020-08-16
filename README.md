@@ -544,5 +544,17 @@ category:{
   }
  ```
  
+ ##### getter and setter
+ ```
+ price:{
+  type: Number,
+  required: true,
+  get: v=> Math.round(v),
+  set: v=> Math.round(v),
+  }
+  ```
+  
+  
+ 
  
  
