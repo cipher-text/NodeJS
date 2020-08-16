@@ -490,3 +490,10 @@ const author = course.authors.id(authorid);
 author.name="adkfjs"
 author.save();
 ```
+##### list of package
+* Joi
+* mongoose
+* winston
+* jsonwebtoken
+* jest ( for testing)
+* 
