@@ -497,3 +497,52 @@ author.save();
 * jsonwebtoken
 * jest ( for testing)
 * 
+
+###### String validation
+*type,
+*minlength,
+*maxlength,
+*required,
+*trim,
+*enum
+```
+category:{
+ type: String,
+ enum: ["fashion", "sports"],
+ required:function(){ return this.isPublished},
+ }
+ ```
+ ###### Number validation
+ *type,
+ *required,
+ *min,
+ *max
+ 
+ ##### custom validator
+ ```
+ tags: {
+ type: Array,
+ validate:{
+ }
+ validator: function(v){
+ return v&&v.length>0;
+ }
+ }
+ ```
+ ##### custom validator async
+ ```
+ tags: {
+ type: Array,
+ validate:{
+ isAsync: true,
+  validator: function(v, callback){
+  setTimeout(()=>{
+    const result =  v&&v.length>0;
+    callback(result);
+   } }
+ }
+  }
+ ```
+ 
+ 
+ 
