@@ -496,7 +496,10 @@ author.save();
 * winston
 * jsonwebtoken
 * jest ( for testing)
-* 
+* joi-objectid
+* lodash
+* joi-password-complexity
+* bcrypt ( for password encryption)
 
 ###### String validation
 *type,
@@ -554,7 +557,14 @@ category:{
   }
   ```
   
+  ##### ObjectID validation
+  ```
+  mongoose.Types.ObjectId.isValid()
+  ```
   
- 
- 
+  ###### hashing password
+  > bcrypt is a one way encription where you can encrypt password but you can't decrypt
+  > but suppose if hacker got access in database and he/she have list of popular password then they he/she can encrypt those popular password and encrypt and compare
+  > that why we need to add salt which is some random string that is added before or after the password
+  
  
