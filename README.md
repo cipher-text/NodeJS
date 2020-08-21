@@ -567,4 +567,11 @@ category:{
   > but suppose if hacker got access in database and he/she have list of popular password then they he/she can encrypt those popular password and encrypt and compare
   > that why we need to add salt which is some random string that is added before or after the password
   
- 
+  ##### How Node js work
+  
+ > single thread
+ > nodejs = v8+libuv+other
+ > libuv = Evenloop + Thread Pool
+  ![node architecture](https://github.com/cipher-text/NodeJS/blob/master/images/img3.png)
+  ![node process and thread](https://github.com/cipher-text/NodeJS/blob/master/images/img4.png)
+
